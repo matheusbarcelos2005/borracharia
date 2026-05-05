@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços — PneuPro</title>
+    <meta name="description" content="Catálogo completo de serviços de borracharia: pneus leves, frotas, pesados, emergência 24h e serviços automotivos. Solicite orçamento pelo WhatsApp.">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/catalogo.css">
+</head>
+<body class="catalogo-page">
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <span style="font-family:var(--font-head);font-size:2rem;color:#fff;letter-spacing:0.05em;">Pneu<span style="color:var(--accent);">Pro</span></span>
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menu">
+            <i class="fa-solid fa-bars" style="color:#fff;font-size:1.2rem;"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto gap-1">
+                <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                <li class="nav-item"><a class="nav-link active" href="catalogo.html">Serviços</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#features">Diferenciais</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#contato">Contato</a></li>
+            </ul>
+            <button class="nav-cart-btn" data-bs-toggle="modal" data-bs-target="#budgetModal" id="headerBudgetBtn" type="button">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Orçamento
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- ── PAGE HEADER ── -->
+<div class="cat-page-header">
+    <div class="cat-page-header-bg"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="cat-page-breadcrumb">
+                    <a href="index.html">Início</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span>Serviços</span>
+                </div>
+                <h1 class="cat-page-title">Nossos <span>Serviços</span></h1>
+                <p class="cat-page-desc">
+                    Escolha serviços de pneus, borracharia, frotas ou emergência e envie seu pedido pelo WhatsApp em segundos.
+                </p>
+            </div>
+            <div class="col-lg-6 d-none d-lg-flex justify-content-end align-items-center gap-4">
+                <div class="cat-stat">
+                    <span class="cat-stat-num" id="totalProducts">22</span>
+                    <span class="cat-stat-label">Serviços</span>
+                </div>
+                <div class="cat-stat-divider"></div>
+                <div class="cat-stat">
+                    <span class="cat-stat-num" id="totalCategories">4</span>
+                    <span class="cat-stat-label">Categorias</span>
+                </div>
+                <div class="cat-stat-divider"></div>
+                <div class="cat-stat">
+                    <span class="cat-stat-num">24h</span>
+                    <span class="cat-stat-label">Resposta</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── MOBILE BAR ── -->
+<div class="cat-mobile-bar">
+    <div class="cat-mobile-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" id="mobileSearchInput" placeholder="Buscar serviço...">
+    </div>
+    <button class="btn-filtros" id="btnFiltros">
+        <i class="fa-solid fa-sliders"></i> Filtros
+        <span class="filter-badge" id="filterBadge"></span>
+    </button>
+</div>
+
+<!-- ── FILTER DRAWER ── -->
+<div class="filter-drawer-overlay" id="drawerOverlay"></div>
+<div class="filter-drawer" id="filterDrawer">
+    <div class="drawer-handle"></div>
+    <div class="drawer-header">
+        <h3><i class="fa-solid fa-sliders me-2" style="color:var(--accent)"></i>Filtros</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-body">
+        <div class="drawer-section">
+            <div class="drawer-section-title"><i class="fa-solid fa-list"></i> Categorias</div>
+            <div class="drawer-cats" id="drawerCats"></div>
+        </div>
+        <div class="drawer-section">
+            <div class="drawer-section-title"><i class="fa-solid fa-arrow-down-a-z"></i> Ordenar por</div>
+            <div class="drawer-sort-pills" id="drawerSort">
+                <span class="sort-pill active" data-sort="default">Padrão</span>
+                <span class="sort-pill" data-sort="name-az">Nome A–Z</span>
+                <span class="sort-pill" data-sort="name-za">Nome Z–A</span>
+            </div>
+        </div>
+        <div class="drawer-section">
+            <div class="drawer-section-title"><i class="fa-solid fa-star"></i> Destaques</div>
+            <div class="drawer-toggle-row">
+                <span class="drawer-toggle-label">Apenas serviços em destaque</span>
+                <label class="sidebar-toggle">
+                    <input type="checkbox" id="drawerDestaque">
+                    <span class="toggle-track"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="drawer-footer">
+        <button class="btn-drawer-clear" id="drawerClear">Limpar</button>
+        <button class="btn-drawer-apply" id="drawerApply">Ver resultados</button>
+    </div>
+</div>
+
+<!-- ── MAIN CONTENT ── -->
+<main class="cat-main">
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="row g-4">
+
+            <!-- Sidebar desktop -->
+            <div class="col-lg-2 col-xl-2 cat-sidebar-col">
+                <div class="cat-sidebar" id="catSidebar">
+                    <div class="sidebar-section">
+                        <div class="sidebar-heading">
+                            <i class="fa-solid fa-list"></i> Categorias
+                        </div>
+                        <div class="sidebar-cats" id="sidebarCats">
+                            <!-- populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section mt-3">
+                        <div class="sidebar-heading">
+                            <i class="fa-solid fa-sliders"></i> Ordenar
+                        </div>
+                        <select class="sidebar-select" id="sortSelect">
+                            <option value="default">Padrão</option>
+                            <option value="name-az">Nome A–Z</option>
+                            <option value="name-za">Nome Z–A</option>
+                        </select>
+                    </div>
+
+                    <div class="sidebar-section mt-3">
+                        <div class="sidebar-heading">
+                            <i class="fa-solid fa-tag"></i> Destaque
+                        </div>
+                        <label class="sidebar-toggle">
+                            <input type="checkbox" id="destaqueFilter">
+                            <span class="toggle-track"></span>
+                            Apenas destaques
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products area -->
+            <div class="col-lg-10 col-xl-10 cat-products-col">
+
+                <!-- Toolbar -->
+                <div class="cat-toolbar">
+                    <div class="toolbar-left">
+                        <div class="cat-search-wrap">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" id="searchInput" placeholder="Buscar serviço, categoria...">
+                            <button class="search-clear" id="searchClear" title="Limpar">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="toolbar-right">
+                        <span class="results-count" id="resultsInfo"></span>
+                        <div class="view-toggle">
+                            <button class="view-btn active" id="viewGrid" title="Grid">
+                                <i class="fa-solid fa-grip"></i>
+                            </button>
+                            <button class="view-btn" id="viewList" title="Lista">
+                                <i class="fa-solid fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active filters chips -->
+                <div class="active-filters" id="activeFilters"></div>
+
+                <!-- Grid -->
+                <div class="products-grid" id="productsGrid"></div>
+
+                <!-- No results -->
+                <div class="no-results" id="noResults">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p>Nenhum serviço encontrado para "<strong id="noResultsTerm"></strong>"</p>
+                    <button class="btn-ghost" onclick="clearAllFilters()">Limpar filtros</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- ── FOOTER (mini) ── -->
+<footer class="cat-footer">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <span style="font-family:var(--font-head);font-size:1.4rem;color:#fff;letter-spacing:0.05em;">Pneu<span style="color:var(--accent);">Pro</span></span>
+                <span style="color:var(--text-muted);font-size:0.82rem;">© 2025 PneuPro · Glorinha/RS</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <a href="index.html#contato" class="social-btn instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="index.html#contato" class="social-btn facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social-btn whatsapp" id="footerWa" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ── BUDGET MODAL ── -->
+<div class="modal fade" id="budgetModal" tabindex="-1" aria-labelledby="budgetModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="budgetModalLabel">
+                    <i class="fa-solid fa-cart-shopping text-accent me-2"></i> Meu Orçamento
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <div class="customer-form mb-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Seu nome</label>
+                            <input type="text" class="form-control" id="customerName" placeholder="Nome completo">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Empresa (opcional)</label>
+                            <input type="text" class="form-control" id="customerCompany" placeholder="Empresa">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Observações</label>
+                            <textarea class="form-control" id="customerObs" rows="2" placeholder="Descreva o veículo, medida do pneu, localização ou dúvida..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div id="cartItemsList">
+                    <p class="text-center" style="color:var(--text-muted);padding:2rem 0;">
+                        <i class="fa-solid fa-cart-shopping d-block mb-2" style="font-size:2rem;color:var(--text-dim);"></i>
+                        Seu orçamento está vazio.<br>Adicione serviços do catálogo.
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer flex-column gap-3">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <button type="button" class="btn-ghost" id="clearCartBtn" style="font-size:0.8rem;padding:0.4rem 1rem;">
+                        <i class="fa-solid fa-trash-can me-1"></i> Limpar tudo
+                    </button>
+                    <div class="budget-total" id="budgetTotal">Total: <span>A consultar</span></div>
+                </div>
+                <button class="btn-wa-send" id="sendWaBtn">
+                    <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i>
+                    Enviar Orçamento pelo WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Floating actions -->
+<div class="floating-actions">
+    <button class="fab fab-wa fab-budget" id="fabBudget" type="button" data-bs-toggle="modal" data-bs-target="#budgetModal" title="Meu orçamento">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count fab-cart-count" id="fabCartCount">0</span>
+    </button>
+    <button class="fab fab-up visible" id="fabUp" title="Topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/catalogo.js"></script>
+</body>
+</html>
