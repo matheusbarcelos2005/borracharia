@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"a:\\\\SITES\\\\SITES PARA FAZER\\\\borracharia\" -Force)",
+      "Bash(ls \"a:\\\\SITES\\\\SITES PARA FAZER\\\\\")",
+      "Read(//a/SITES/**)",
+      "PowerShell(Get-ChildItem -Path \"a:\\\\SITES\\\\SITES PRONTOS\\\\abcc\" -Recurse -File | ForEach-Object { $_.FullName })",
+      "PowerShell(Get-ChildItem \"a:\\\\SITES\\\\SITES PRONTOS\\\\abcc\\\\assets\\\\images\" | Where-Object { $_.LastWriteTime -gt \\(Get-Date \"2026-05-05 17:00\"\\) } | Select-Object Name, LastWriteTime)",
+      "PowerShell(Get-ChildItem \"a:\\\\SITES\\\\SITES PRONTOS\\\\abcc\\\\assets\\\\images\" | ForEach-Object { $_.Name })"
+    ],
+    "additionalDirectories": [
+      "a:\\SITES\\SITES PRONTOS\\abcc\\js",
+      "a:\\SITES\\SITES PRONTOS\\abcc\\css"
+    ]
+  }
+}
