@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:growacademia.com.br)",
+      "WebSearch",
+      "Bash(ls \"a:/SITES/SITES PARA FAZER/\")",
+      "Read(//a/SITES/SITES PARA FAZER/**)",
+      "Bash(mkdir -p \"a:/SITES/SITES PARA FAZER/salao-beleza/css\" \"a:/SITES/SITES PARA FAZER/salao-beleza/js\" \"a:/SITES/SITES PARA FAZER/salao-beleza/assets/images\" && echo \"OK\")"
+    ],
+    "additionalDirectories": [
+      "a:\\SITES\\SITES PARA FAZER\\salao-beleza"
+    ]
+  }
+}
